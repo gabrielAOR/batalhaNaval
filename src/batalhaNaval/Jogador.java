@@ -1,6 +1,8 @@
 package batalhaNaval;
 
 
+import java.util.Scanner;
+
 public class Jogador {
 	
 	private String nome;
@@ -19,16 +21,30 @@ public class Jogador {
 		this.board = tabuleiro;
 	}
 	
-	public boolean validaPosicao(int linha, int coluna) {
-		return  (coluna <= 10 && coluna >= 0) && (linha <= 10 && linha >= 0);
+	public int validaPosicao(String coord) {
+		int valor = 0;
+		try {
+			valor = Integer.parseInt(coord);
+			if(valor <= 0 && valor >= 10) {throw new Exception();}
+			return valor;
+		}catch(Exception e) {
+			System.out.println("Coordenada invalida");
+			this.pegaPosicao();
+		}return 0;
 	}
 	
-	public void posicionaNavio(int linha, int coluna) {
-		if(validaPosicao(linha,coluna)) {
-			this.board.posiciona(coluna, linha);
-		}
-		
-		
+	public int pegaPosicao() {
+		String coord = "";
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Informe a coord:");
+		coord = sc.next();
+		return this.validaPosicao(coord);
+	}
+
+	public void posicionaNavio(Navio navio,int linha, int coluna) {
+			for(int i = 0; i < navio.getTamanho();i++) {
+				this.board.posiciona(coluna+i, linha);
+			}
 	}
 	
 }

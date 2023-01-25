@@ -1,22 +1,20 @@
 package batalhaNaval;
-import java.util.Scanner;
 public class Jogo {
 	
 	
 	public static void main(String[] args) {
 		int linha, coluna;
 		Jogador jogador = new Jogador("Gabriel");
-		Scanner sc = new Scanner(System.in);
+		Navio navio1 = new Navio(1,4);
+		Navio navio2 = new Navio(2,3);
+		Navio navio3 = new Navio(3,2);
+		Navio navio4 = new Navio(4,1);
 		
 		jogador.getBoard().preencheTabuleiro();
 		jogador.getBoard().imprimeTabuleiro();
 		
-		System.out.println("Informe a coord da linha");
-		linha = sc.nextInt();
-		System.out.println("Informe a coord da coluna");
-		coluna = sc.nextInt();
-		
-		jogador.posicionaNavio(linha-1, coluna-1);
+		linha = jogador.pegaPosicao();
+		coluna = jogador.pegaPosicao();
 		jogador.getBoard().imprimeTabuleiro();
 		
 	}

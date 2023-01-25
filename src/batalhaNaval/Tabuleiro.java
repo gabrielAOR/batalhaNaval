@@ -2,7 +2,7 @@ package batalhaNaval;
 public class Tabuleiro {
 	
 	private char[][] tabuleiro = new char[10][10];
-	
+
 	public void posiciona(int c, int l) {
 		this.tabuleiro[c][l] = 'N';
 	}
