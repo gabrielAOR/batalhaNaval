@@ -12,9 +12,7 @@ public class Jogo {
 		
 		jogador.getBoard().preencheTabuleiro();
 		jogador.getBoard().imprimeTabuleiro();
-		
-		linha = jogador.pegaPosicao();
-		coluna = jogador.pegaPosicao();
+		jogador.pegaPosicao(navio4);
 		jogador.getBoard().imprimeTabuleiro();
 		
 	}
