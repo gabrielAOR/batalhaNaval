@@ -6,6 +6,11 @@ import java.util.Scanner;
 public class Jogador {
 	
 	private String nome;
+	
+	public String getNome() {
+		return nome;
+	}
+
 	private boolean turno = false;
 	private Tabuleiro board = new Tabuleiro();
 	
@@ -21,15 +26,11 @@ public class Jogador {
 		this.board = tabuleiro;
 	}
 	
-	public void validaPosicao(Navio navio,String l, String c) {
-		int coluna, linha;
+	public void validaPosicao(Navio navio,int l, int c) {
 		try {
-			coluna = Integer.parseInt(c);
-			linha = Integer.parseInt(l);
-			if((linha < 0 || linha > 10) || (coluna < 0 || coluna > 10)) {throw new Exception();}
-			// LINHA ABAIXO COM ERRO
-			if(this.board.naoTemEspaco(navio.getTamanho(), coluna, linha)) {throw new Exception();}
-			this.posicionaNavio(navio, linha, coluna);
+			if((l < 0 || l > 9) || (c < 0 || c > 9)) {throw new Exception();}
+			if(this.board.naoTemEspaco(navio.getTamanho(), c, l)) {throw new Exception();}
+			this.posicionaNavio(navio, l, c);
 		}catch(Exception e) {
 			System.out.println("Coordenada invalida");
 			this.pegaPosicao(navio);
@@ -38,12 +39,12 @@ public class Jogador {
 	}
 	
 	public void pegaPosicao(Navio navio) {
-		String linha = "", coluna = "";
+		int linha, coluna;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Informe a coordenada da linha:");
-		linha = sc.next();
-		System.out.println("Informe a coordenada da coluna:");
-		coluna = sc.next();
+		System.out.println("Informe a coordenada da linha do canhao de " + navio.getTamanho() + " canhões:");
+		linha = sc.nextInt()- 1;
+		System.out.println("Informe a coordenada da coluna do canhao de " + navio.getTamanho() + " canhões:");
+		coluna = sc.nextInt()- 1;
 		this.validaPosicao(navio,linha, coluna);
 	}
 
