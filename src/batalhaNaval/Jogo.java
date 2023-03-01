@@ -12,9 +12,9 @@ public class Jogo {
 		
 		jogador1.getBoard().preencheTabuleiro();
 		posicionaDefesa(jogador1,navio1);
-	//	posicionaDefesa(jogador1,navio2);
-		//posicionaDefesa(jogador1,navio3);
-		//posicionaDefesa(jogador1,navio4);
+		posicionaDefesa(jogador1,navio2);
+		posicionaDefesa(jogador1,navio3);
+		posicionaDefesa(jogador1,navio4);
 		jogador2.getBoard().preencheTabuleiro();
 		System.out.println("Sua vez " + jogador2.getNome());
 		posicionaDefesa(jogador2,navio1);
