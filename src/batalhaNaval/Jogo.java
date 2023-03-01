@@ -11,17 +11,18 @@ public class Jogo {
 		Navio navio4 = new Navio(4,1);
 		
 		jogador1.getBoard().preencheTabuleiro();
-		posicionaDefesa(jogador1,navio1);
-		posicionaDefesa(jogador1,navio2);
-		posicionaDefesa(jogador1,navio3);
-		posicionaDefesa(jogador1,navio4);
 		jogador2.getBoard().preencheTabuleiro();
+		posicionaDefesa(jogador1,navio1);
+	//	posicionaDefesa(jogador1,navio2);
+	//	posicionaDefesa(jogador1,navio3);
+	//	posicionaDefesa(jogador1,navio4);
 		System.out.println("Sua vez " + jogador2.getNome());
-		posicionaDefesa(jogador2,navio1);
-		posicionaDefesa(jogador2,navio2);
-		posicionaDefesa(jogador2,navio3);
-		posicionaDefesa(jogador2,navio4);
-		
+	//	posicionaDefesa(jogador2,navio1);
+	//	posicionaDefesa(jogador2,navio2);
+	//	posicionaDefesa(jogador2,navio3);
+	//	posicionaDefesa(jogador2,navio4);
+		jogador2.ataca(jogador1);
+		jogador1.getBoard().imprimeTabuleiro();
 	}
 	
 	public static void posicionaDefesa(Jogador jogador, Navio navio) {

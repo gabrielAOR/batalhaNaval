@@ -3,6 +3,13 @@ public class Tabuleiro {
 	
 	private char[][] tabuleiro = new char[10][10];
 
+	public void setTiles(int c, int l, char tile) {
+		this.tabuleiro[c][l] = tile;
+	}
+
+	public char getTabuleiro(int c, int l) {
+		return tabuleiro[c][l];
+	}
 	
 	public boolean naoTemEspaco(int tamanho, int c, int l) {
 		for(int i = 0; i < tamanho;i++) {

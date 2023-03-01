@@ -6,14 +6,13 @@ import java.util.Scanner;
 public class Jogador {
 	
 	private String nome;
+	private boolean turno = false;
+	private Tabuleiro board = new Tabuleiro();
 	
 	public String getNome() {
 		return nome;
 	}
 
-	private boolean turno = false;
-	private Tabuleiro board = new Tabuleiro();
-	
 	Jogador(String nome){
 		this.nome = nome;
 	}
@@ -52,6 +51,22 @@ public class Jogador {
 			for(int i = 0; i < navio.getTamanho();i++) {
 				this.board.posiciona(coluna+i, linha);
 			}
+	}
+	public static void ataca(Jogador jogador) {
+		int linha, coluna;
+		System.out.println("Informe as coordenadas do ataque");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Informe a coordenada da linha do navio");
+		linha = sc.nextInt()- 1;
+		System.out.println("Informe a coordenada da coluna do navio");
+		coluna = sc.nextInt()- 1;
+		if(jogador.getBoard().getTabuleiro(coluna, linha) == 'N') {
+			jogador.getBoard().setTiles(coluna, linha, 'O');
+		}else {
+			jogador.getBoard().setTiles(coluna, linha, 'X');
+		}
+			
+		
 	}
 	
 }
