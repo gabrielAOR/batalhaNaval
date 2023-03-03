@@ -16,7 +16,7 @@ public class Jogador {
 	public String getNome() {
 		return nome;
 	}
-
+	int j = 1;
 	Jogador(String nome){
 		this.nome = nome;
 	}
