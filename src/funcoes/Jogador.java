@@ -1,4 +1,4 @@
-package batalhaNaval;
+package funcoes;
 
 
 import java.util.Scanner;
@@ -9,7 +9,7 @@ public class Jogador {
 	private int solved = 0;
 	private Tabuleiro board = new Tabuleiro();
 	
-	Jogador(String nome){
+	public Jogador(String nome){
 		this.nome = nome;
 	}
 				

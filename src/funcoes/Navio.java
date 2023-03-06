@@ -1,4 +1,4 @@
-package batalhaNaval;
+package funcoes;
 
 public class Navio {
 

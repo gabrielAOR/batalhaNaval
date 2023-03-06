@@ -1,4 +1,4 @@
-package batalhaNaval;
+package funcoes;
 public class Tabuleiro {
 	
 	private char[][] tabuleiro = new char[10][10];

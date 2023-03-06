@@ -2,6 +2,8 @@ package batalhaNaval;
 
 import java.util.Scanner;
 
+import funcoes.Jogador;
+
 public class Menu {
 
     private Jogador player1;
