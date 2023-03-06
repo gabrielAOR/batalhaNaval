@@ -9,6 +9,10 @@ public class Jogador {
 	private int solved = 0;
 	private Tabuleiro board = new Tabuleiro();
 	
+	Jogador(String nome){
+		this.nome = nome;
+	}
+				
 	public int getSolved(){
 		return this.solved;
 	}
@@ -16,63 +20,74 @@ public class Jogador {
 	public String getNome() {
 		return nome;
 	}
-	int j = 1;
-	Jogador(String nome){
-		this.nome = nome;
-	}
-								
+				
 	public Tabuleiro getBoard() {
 		return board;
 	}
 	
-	public void setBoard(Tabuleiro tabuleiro) {
-		this.board = tabuleiro;
-	}
-	
-	public void validaPosicao(Navio navio,int l, int c) {
-		try {
-			if((l < 0 || l > 9) || (c < 0 || c > 9)) {throw new Exception();}
-			if(this.board.naoTemEspaco(navio.getTamanho(), c, l)) {throw new Exception();}
-			this.getBoard().posicionaNavio(navio, l, c);
-		}catch(Exception e) {
-			System.out.println("Coordenada invalida");
-			this.pegaPosicao(navio);
-		}
-	}
-	
-	public void pegaPosicao(Navio navio) {
+	public void pegaCoord(Navio navio) {
 		int linha, coluna;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Informe a coordenada da linha do canhao de " + navio.getTamanho() + " canhões:");
-		linha = sc.nextInt()- 1;
-		System.out.println("Informe a coordenada da coluna do canhao de " + navio.getTamanho() + " canhões:");
-		coluna = sc.nextInt()- 1;
-		this.validaPosicao(navio,linha, coluna);
+		try {
+			System.out.println("Informe a coordenada da linha do canhao de " + navio.getTamanho() + " canhões:");
+			linha = sc.nextInt()- 1;
+			System.out.println("Informe a coordenada da coluna do canhao de " + navio.getTamanho() + " canhões:");
+			coluna = sc.nextInt()- 1;
+			if(!(this.getBoard().validaPosicao(navio, linha, coluna))) {
+				System.out.println("Posicão preenchida ou fora do tabuleiro");
+				this.pegaCoord(navio);
+			}else {
+				this.getBoard().posicionaNavio(navio, linha, coluna);
+			}
+			
+		}catch(Exception e){
+			System.out.println("Coordenadas invalidas");
+			this.pegaCoord(navio);
+		}
 	}
 
 	public void ataca(Jogador jogador) {
 		int linha, coluna;
-		System.out.println(this.getNome() + " informe as coordenadas do ataque");
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Informe a coordenada da linha do navio");
-		linha = sc.nextInt() - 1;
-		System.out.println("Informe a coordenada da coluna do navio");
-		coluna = sc.nextInt() - 1;
-		if(jogador.getBoard().getTile(coluna, linha) == 'N') {
-			jogador.getBoard().setTiles(coluna, linha, 'O');
-			this.solved = this.solved + 1;
-		}else {
-			jogador.getBoard().setTiles(coluna, linha, 'X');
-		}
-		jogador.getBoard().imprimeTabuleiro();		
-		
-	}
-	public Jogador ataque(Jogador jogador) {
-		while(true){
+		try {
+			System.out.println("Informe a coordenada da linha do ataque");
+			linha = sc.nextInt()- 1;
+			System.out.println("Informe a coordenada da	coluna do ataque");
+			coluna = sc.nextInt()- 1;
+			if(!(this.getBoard().validaPosicaoAtaque(jogador, linha, coluna))) {
+				System.out.println("Posicão invalida");
+				this.ataca(jogador);
+			}
+			if(jogador.getBoard().getTile(coluna, linha) == 'N') {
+				jogador.getBoard().setTiles(coluna, linha, 'O');
+				this.solved = this.solved + 1;
+			}else {
+				jogador.getBoard().setTiles(coluna, linha, 'X');
+			}
+			jogador.getBoard().imprimeTabuleiro();
+		}catch(Exception e){
+			System.out.println("Coordenada invalida");
 			this.ataca(jogador);
-			if(this.getSolved() == 4) { return this;}
-			jogador.ataca(this);
-			if(jogador.getSolved() == 4) { return jogador;}
+		}
+	}
+	public void pegaCoordP() {
+		int linha, coluna;
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("Informe a coordenada da linha do porta-aviões");
+			linha = sc.nextInt()- 1;
+			System.out.println("Informe a coordenada da coluna do porta-aviões");
+			coluna = sc.nextInt()- 1;
+			if(!(this.getBoard().validaAviao(linha, coluna))) {
+				System.out.println("Posicão preenchida ou fora do tabuleiro");
+				this.pegaCoordP();
+			}else {
+				this.getBoard().posicionaAviao(linha, coluna);
+			}
+			
+		}catch(Exception e){
+			System.out.println("Coordenadas invalidas");
+			this.pegaCoordP();
 		}
 	}
 }

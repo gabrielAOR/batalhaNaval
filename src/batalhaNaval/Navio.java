@@ -2,11 +2,11 @@ package batalhaNaval;
 
 public class Navio {
 
-	private int tamanho;
+	private int tamanhox;
 	private int quantidade;
 	
 	public Navio(int tamanho, int quantidade) {
-		this.tamanho = tamanho;
+		this.tamanhox = tamanho;
 		this.quantidade = quantidade;
 	}
 	
@@ -15,6 +15,6 @@ public class Navio {
 	}
 	
 	public int getTamanho() {
-		return tamanho;
+		return tamanhox;
 	}
 }
