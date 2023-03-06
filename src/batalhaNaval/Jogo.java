@@ -15,15 +15,15 @@ public class Jogo {
 		jogador1.getBoard().preencheTabuleiro();
 		jogador2.getBoard().preencheTabuleiro();
 		posicionaPortaAviao(jogador1);
-		//posicionaDefesa(jogador1,navio1);
-		//posicionaDefesa(jogador1,navio2);
-		//posicionaDefesa(jogador1,navio3);
-		//posicionaDefesa(jogador1,navio4);
+		posicionaDefesa(jogador1,navio1);
+		posicionaDefesa(jogador1,navio2);
+		posicionaDefesa(jogador1,navio3);
+		posicionaDefesa(jogador1,navio4);
 		System.out.println("Sua vez " + jogador2.getNome());
-		//posicionaDefesa(jogador2,navio1);
-		//posicionaDefesa(jogador2,navio2);
-		//posicionaDefesa(jogador2,navio3);
-		//posicionaDefesa(jogador2,navio4);
+		posicionaDefesa(jogador2,navio1);
+		posicionaDefesa(jogador2,navio2);
+		posicionaDefesa(jogador2,navio3);
+		posicionaDefesa(jogador2,navio4);
 		ganhador = ataque(jogador1,jogador2);
 		System.out.println("Parabens " + ganhador.getNome() + " Você foi o ganhador");
 	}
