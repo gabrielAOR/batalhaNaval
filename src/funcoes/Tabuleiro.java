@@ -19,12 +19,32 @@ public class Tabuleiro {
 		}
 	}
 	
-	public void imprimeTabuleiro() {
-		System.out.println("1 2 3 4 5 6 7 8 9 10");
+	public void imprimeTabuleiroDefesa() {
+		System.out.println("  1 2 3 4 5 6 7 8 9 10");
 		for(int i = 0; i < 10; i++) {
 			System.out.print(i+1 + " ");
 			for(int j = 0; j < 10; j++) {
 				System.out.print(this.tabuleiro[j][i] + " ");
+			}
+			System.out.println();
+		}
+	}
+	public void imprimeTabuleiroAtaque() {
+		System.out.println("  1 2 3 4 5 6 7 8 9 10");
+		for(int i = 0; i < 10; i++) {
+			System.out.print(i+1 + " ");
+			for(int j = 0; j < 10; j++) {
+				if((this.tabuleiro[j][i] == 'O')){ 
+					System.out.print("O ");
+					continue;
+				}
+				if((this.tabuleiro[j][i] == 'X')){ 
+					System.out.print("X ");
+					continue;
+				}else {
+					System.out.print(". ");
+				}
+				
 			}
 			System.out.println();
 		}
@@ -44,7 +64,7 @@ public class Tabuleiro {
 		this.tabuleiro[c+1][l+2] = 'N';
 	}
 	
-	public boolean validaEspaco(int c, int l) {
+	public boolean validaEspaco(int c, int l) { 
 		return (this.tabuleiro[c][l] == 'X') || (this.tabuleiro[c][l] == 'O');
 	}
 	

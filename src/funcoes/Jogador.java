@@ -64,7 +64,7 @@ public class Jogador {
 			}else {
 				jogador.getBoard().setTiles(coluna, linha, 'X');
 			}
-			jogador.getBoard().imprimeTabuleiro();
+			jogador.getBoard().imprimeTabuleiroAtaque();
 		}catch(Exception e){
 			System.out.println("Coordenada invalida");
 			this.ataca(jogador);
