@@ -3,11 +3,20 @@ package funcoes;
 
 import java.util.Scanner;
 
-public class Jogador {
+public class Jogador{
 	
 	private String nome;
 	private int solved = 0;
+	private int solution = 0;
 	private Tabuleiro board = new Tabuleiro();
+	
+	public int getSolution() {
+		return solution;
+	}
+	
+	public void increaseSolution(int tamanho) {
+		this.solution = this.solution + tamanho;
+	}
 	
 	public Jogador(String nome){
 		this.nome = nome;
