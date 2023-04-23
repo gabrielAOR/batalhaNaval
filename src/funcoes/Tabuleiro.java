@@ -20,9 +20,9 @@ public class Tabuleiro {
 	}
 	
 	public void imprimeTabuleiroDefesa() {
-		System.out.println("  1 2 3 4 5 6 7 8 9 10");
+		System.out.println("  0 1 2 3 4 5 6 7 8 9");
 		for(int i = 0; i < 10; i++) {
-			System.out.print(i+1 + " ");
+			System.out.print(i + " ");
 			for(int j = 0; j < 10; j++) {
 				System.out.print(this.tabuleiro[j][i] + " ");
 			}
@@ -30,10 +30,10 @@ public class Tabuleiro {
 		}
 	}
 	public void imprimeTabuleiroAtaque() {
-		System.out.println("  1 2 3 4 5 6 7 8 9 10");
-		for(int i = 0; i < 10; i++) {
-			System.out.print(i+1 + " ");
-			for(int j = 0; j < 10; j++) {
+		System.out.println("  0 1 2 3 4 5 6 7 8 9");
+		for(int i = 0; i < 9; i++) {
+			System.out.print(i + " ");
+			for(int j = 0; j < 9; j++) {
 				if((this.tabuleiro[j][i] == 'O')){ 
 					System.out.print("O ");
 					continue;

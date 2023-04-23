@@ -38,10 +38,10 @@ public class Jogador{
 		int linha, coluna;
 		Scanner sc = new Scanner(System.in);
 		try {
-			System.out.println("Informe a coordenada da linha do canhao de " + navio.getTamanho() + " canhões:");
-			linha = sc.nextInt()- 1;
-			System.out.println("Informe a coordenada da coluna do canhao de " + navio.getTamanho() + " canhões:");
-			coluna = sc.nextInt()- 1;
+			System.out.println("Informe a coordenada da linha do navio de " + navio.getTamanho() + " canhões:");
+			linha = sc.nextInt();
+			System.out.println("Informe a coordenada da coluna do navio de " + navio.getTamanho() + " canhões:");
+			coluna = sc.nextInt();
 			if(!(this.getBoard().validaPosicao(navio, linha, coluna))) {
 				System.out.println("Posicão preenchida ou fora do tabuleiro");
 				this.pegaCoord(navio);
@@ -69,9 +69,9 @@ public class Jogador{
 			System.out.println("\n \n" + this.getNome() + ", sua vez de atacar");
 			
 			System.out.println("Informe a coordenada da linha do ataque");
-			linha = sc.nextInt()- 1;
+			linha = sc.nextInt();
 			System.out.println("Informe a coordenada da	coluna do ataque");
-			coluna = sc.nextInt()- 1;
+			coluna = sc.nextInt();
 			if(!(this.getBoard().validaPosicaoAtaque(atacado, linha, coluna))) {
 				System.out.println("Posicão invalida");
 				this.ataca(atacado);
@@ -93,9 +93,9 @@ public class Jogador{
 		Scanner sc = new Scanner(System.in);
 		try {
 			System.out.println("Informe a coordenada da linha do porta-aviões");
-			linha = sc.nextInt()- 1;
+			linha = sc.nextInt();
 			System.out.println("Informe a coordenada da coluna do porta-aviões");
-			coluna = sc.nextInt()- 1;
+			coluna = sc.nextInt();
 			if(!(this.getBoard().validaAviao(linha, coluna))) {
 				System.out.println("Posicão preenchida ou fora do tabuleiro");
 				this.pegaCoordP();
