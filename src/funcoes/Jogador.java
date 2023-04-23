@@ -55,28 +55,37 @@ public class Jogador{
 		}
 	}
 
-	public void ataca(Jogador jogador) {
+	public void ataca(Jogador atacado) {
 		int linha, coluna;
 		Scanner sc = new Scanner(System.in);
 		try {
+			System.out.println("TURNO DE ATAQUE \n \n \n");
+			System.out.println("Tabuleiro de: " + atacado.getNome());
+			atacado.getBoard().imprimeTabuleiroAtaque();
+			System.out.println("\n \n \n \n");
+			
+			System.out.println("Tabuleiro de: " + this.getNome());
+			this.getBoard().imprimeTabuleiroAtaque();
+			System.out.println("\n \n" + this.getNome() + ", sua vez de atacar");
+			
 			System.out.println("Informe a coordenada da linha do ataque");
 			linha = sc.nextInt()- 1;
 			System.out.println("Informe a coordenada da	coluna do ataque");
 			coluna = sc.nextInt()- 1;
-			if(!(this.getBoard().validaPosicaoAtaque(jogador, linha, coluna))) {
+			if(!(this.getBoard().validaPosicaoAtaque(atacado, linha, coluna))) {
 				System.out.println("Posicão invalida");
-				this.ataca(jogador);
+				this.ataca(atacado);
 			}
-			if(jogador.getBoard().getTile(coluna, linha) == 'N') {
-				jogador.getBoard().setTiles(coluna, linha, 'O');
+			if(atacado.getBoard().getTile(coluna, linha) == 'N') {
+				atacado.getBoard().setTiles(coluna, linha, 'O');
 				this.solved = this.solved + 1;
 			}else {
-				jogador.getBoard().setTiles(coluna, linha, 'X');
+				atacado.getBoard().setTiles(coluna, linha, 'X');
 			}
-			jogador.getBoard().imprimeTabuleiroAtaque();
+			atacado.getBoard().imprimeTabuleiroAtaque();
 		}catch(Exception e){
 			System.out.println("Coordenada invalida");
-			this.ataca(jogador);
+			this.ataca(atacado);
 		}
 	}
 	public void pegaCoordP() {

@@ -1,5 +1,4 @@
 package batalhaNaval;
-
 import java.util.Scanner;
 
 import funcoes.Jogador;
@@ -8,49 +7,18 @@ import funcoes.PortaAvioes;
 
 public class Jogo {
 	
-	int solucao1 = 0;
-	int solucao2 = 0;
-	
 	public static void main(String[] args) {
-		int quantidade = 0;
-		Jogador jogador1 = new Jogador("Player1");
-		Jogador jogador2 = new Jogador("Player2");
-		Jogador ganhador;
+		menu();
 		
-		jogador1.getBoard().preencheTabuleiro();
-		jogador2.getBoard().preencheTabuleiro();
-		System.out.println("Sua vez " + jogador1.getNome());
-		System.out.println("Quantos aviões de 1 cano você quer posicionar?");
-		escolheNavio(jogador1,1);
-		System.out.println("Quantos aviões de 2 cano você quer posicionar?");
-		escolheNavio(jogador1,2);
-		System.out.println("Quantos aviões de 3 cano você quer posicionar?");
-		escolheNavio(jogador1,3);
-		System.out.println("Quantos aviões de 4 cano você quer posicionar?");
-		escolheNavio(jogador1,4);
-		posicionaPortaAviao(jogador1);
-		
-
-		System.out.println("Sua vez " + jogador1.getNome());
-		System.out.println("Quantos aviões de 1 cano você quer posicionar?");
-		escolheNavio(jogador1,1);
-		System.out.println("Quantos aviões de 2 cano você quer posicionar?");
-		escolheNavio(jogador1,2);
-		System.out.println("Quantos aviões de 3 cano você quer posicionar?");
-		escolheNavio(jogador1,3);
-		System.out.println("Quantos aviões de 4 cano você quer posicionar?");
-		escolheNavio(jogador1,4);
-		
-		ganhador = ataque(jogador1,jogador2);
-		System.out.println("Parabens " + ganhador.getNome() + " Você foi o ganhador");
 	}
-	
 	public static void posicionaDefesa(Jogador jogador, Navio navio) {
 		for(int i = 0; i < navio.getQuantidade();i++) {
 			System.out.println(jogador.getNome() + " posicione sua defesa");
 			jogador.getBoard().imprimeTabuleiroDefesa();
 			jogador.pegaCoord(navio);
+			cls();
 		}
+		jogador.increaseSolution(navio.getTamanho() * navio.getQuantidade());
 		jogador.getBoard().imprimeTabuleiroDefesa();
 	}
 	
@@ -64,16 +32,86 @@ public class Jogo {
 	}
 	
 	public static void posicionaPortaAviao(Jogador jogador) {
-		System.out.println(jogador.getNome() + " Sua vez:");
+		int quantidade;
+		Scanner sc = new Scanner(System.in);
+		quantidade = sc.nextInt();
+		jogador.increaseSolution(quantidade * 5);
 		jogador.getBoard().imprimeTabuleiroDefesa();
 		jogador.pegaCoordP();
+		jogador.getBoard().imprimeTabuleiroDefesa();
 	}
 	
 	public static void escolheNavio(Jogador jogador, int tamanho) {
 		int quantidade;
 		Scanner sc = new Scanner(System.in);
-		jogador.increaseSolution(tamanho);
 		quantidade = sc.nextInt();
 		posicionaDefesa(jogador, new Navio(tamanho,quantidade));
+	}
+	
+	public static void posicionaCustom(Jogador jogador) {
+		System.out.println("Escolha a quantidade de porta-aviões");
+		posicionaPortaAviao(jogador);
+		System.out.println("Escolha a quantidade de navios de 1 canhão");
+		escolheNavio(jogador, 1);
+		System.out.println("Escolha a quantidade de navios de 1 canhão");
+		escolheNavio(jogador, 2);
+		System.out.println("Escolha a quantidade de navios de 1 canhão");
+		escolheNavio(jogador, 3);
+		System.out.println("Escolha a quantidade de navios de 1 canhão");
+		escolheNavio(jogador, 4);
+	}
+	
+	public static void jogoNormal() {
+		Jogador jogador1 = new Jogador("Player1");
+		Jogador jogador2 = new Jogador("Player2");
+		Jogador ganhador;
+		
+		jogador1.getBoard().preencheTabuleiro();
+		jogador2.getBoard().preencheTabuleiro();
+		
+		System.out.println("Sua vez " + jogador1.getNome());
+		posicionaDefesa(jogador1, new Navio(1,4));
+		posicionaDefesa(jogador1, new Navio(2,3));
+		posicionaDefesa(jogador1, new Navio(3,2));
+		posicionaDefesa(jogador1, new Navio(4,1));
+		cls();
+		posicionaDefesa(jogador2, new Navio(1,4));
+		posicionaDefesa(jogador2, new Navio(2,3));
+		posicionaDefesa(jogador2, new Navio(3,2));
+		posicionaDefesa(jogador2, new Navio(4,1));
+		cls();
+		ganhador = ataque(jogador1,jogador2);
+		System.out.println("Parabens " + ganhador.getNome() + " Você foi o ganhador");
+	}
+	
+	public static void jogoCustom() {
+		Jogador jogador1 = new Jogador("Player1");
+		Jogador jogador2 = new Jogador("Player2");
+		Jogador ganhador;
+		
+		jogador1.getBoard().preencheTabuleiro();
+		jogador2.getBoard().preencheTabuleiro();
+		
+		System.out.println("Sua vez " + jogador1.getNome());
+		posicionaCustom(jogador1);
+		
+		System.out.println("Sua vez " + jogador2.getNome());
+		posicionaCustom(jogador2);
+		
+		ganhador = ataque(jogador1,jogador2);
+		System.out.println("Parabens " + ganhador.getNome() + " Você foi o ganhador");
+	}
+	
+	public static void menu() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Escolha a opção:");
+		System.out.println("1 - Batalha Naval");
+		System.out.println("2 - Batalha Naval Custom");
+		int opcao = sc.nextInt();
+		if(opcao == 1) {jogoNormal();}
+		if(opcao == 2) {jogoCustom();}
+	}
+	public static void cls() {
+		System.out.println("\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n");
 	}
 }
