@@ -1,5 +1,8 @@
 package funcoes;
-public class Tabuleiro {
+
+import java.io.Serializable;
+
+public class Tabuleiro implements Serializable {
 	
 	private char[][] tabuleiro = new char[10][10];
 
@@ -31,9 +34,9 @@ public class Tabuleiro {
 	}
 	public void imprimeTabuleiroAtaque() {
 		System.out.println("  0 1 2 3 4 5 6 7 8 9");
-		for(int i = 0; i < 9; i++) {
+		for(int i = 0; i < 10; i++) {
 			System.out.print(i + " ");
-			for(int j = 0; j < 9; j++) {
+			for(int j = 0; j < 10; j++) {
 				if((this.tabuleiro[j][i] == 'O')){ 
 					System.out.print("O ");
 					continue;

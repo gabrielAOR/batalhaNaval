@@ -1,14 +1,25 @@
 package funcoes;
 
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Jogador{
+public class Jogador implements Serializable{
 	
 	private String nome;
 	private int solved = 0;
 	private int solution = 0;
+	private float tempo = 0;
 	private Tabuleiro board = new Tabuleiro();
+	
+	public float getTempo() {
+		return tempo;
+	}
+
+	public void setTempo(float tempo) {
+		this.tempo = tempo;
+	}
+	
 	
 	public int getSolution() {
 		return solution;
