@@ -93,7 +93,6 @@ public class Jogador implements Serializable{
 			}else {
 				atacado.getBoard().setTiles(coluna, linha, 'X');
 			}
-			atacado.getBoard().imprimeTabuleiroAtaque();
 		}catch(Exception e){
 			System.out.println("Coordenada invalida");
 			this.ataca(atacado);

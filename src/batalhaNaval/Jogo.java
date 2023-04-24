@@ -28,7 +28,7 @@ public class Jogo {
 			cls();
 		}
 		jogador.increaseSolution(navio.getTamanho() * navio.getQuantidade());
-		jogador.getBoard().imprimeTabuleiroDefesa();
+		
 	}
 	
 	public static void posicionaPortaAviao(Jogador jogador, int quantidade) {
@@ -42,6 +42,7 @@ public class Jogo {
 	public static void escolheNavio(Jogador jogador, int tamanho) {
 		int quantidade;
 		Scanner sc = new Scanner(System.in);
+		jogador.getBoard().imprimeTabuleiroDefesa();
 		quantidade = sc.nextInt();
 		posicionaDefesa(jogador, new Navio(tamanho,quantidade));
 	}
@@ -49,6 +50,7 @@ public class Jogo {
 	public static Jogador ataque(Jogador jogador1, Jogador jogador2) {
 		while(true){
 			jogador1.ataca(jogador2);
+			cls();
 			if(jogador1.getSolved() == jogador1.getSolution()) { return jogador1;}
 			jogador2.ataca(jogador1);
 			if(jogador2.getSolved() == jogador2.getSolution()) { return jogador2;}
@@ -58,20 +60,21 @@ public class Jogo {
 		int quantidade;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Escolha a quantidade de porta-aviões");
+		jogador.getBoard().imprimeTabuleiroDefesa();
 		quantidade = sc.nextInt();
 		posicionaPortaAviao(jogador, quantidade);
-		
+		cls();
+		System.out.println("Sua vez " + jogador.getNome());
 		System.out.println("Escolha a quantidade de navios de 1 canhão");
 		escolheNavio(jogador, 1);
+		cls();
 		
-		System.out.println("Escolha a quantidade de navios de 2 canhões");
-		escolheNavio(jogador, 2);
-		
-		System.out.println("Escolha a quantidade de navios de 3 canhões");
-		escolheNavio(jogador, 3);
-		
-		System.out.println("Escolha a quantidade de navios de 4 canhões");
-		escolheNavio(jogador, 4);
+		for(int i = 2; i < 4;i++) {
+			System.out.println("Sua vez " + jogador.getNome());
+			System.out.println("Escolha a quantidade de navios de " + i + " canhões");
+			escolheNavio(jogador, i);
+			cls();
+		}
 	}
 	
 	public static void jogoCustom() throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -157,25 +160,24 @@ public class Jogo {
 		if(opcao == 3) {recorde();}
 	}
 	
-	private static void recorde() {
+	private static void recorde() throws FileNotFoundException, ClassNotFoundException, IOException {
+		Scanner sc = new Scanner(System.in);
 		ArrayList<Jogador> listaRecorde = new ArrayList<>();
 		try {
         	ObjectInputStream in = new ObjectInputStream(new FileInputStream("recorde.txt"));
     		listaRecorde = (ArrayList<Jogador>) in.readObject();
 		}catch(Exception e) {
-			System.out.println("não há recorde algum");
+		
 		}
 		System.out.println("    NOME        TEMPO");
 		for(int i = 0; i < listaRecorde.size();i++) {
 			System.out.println(i+1 + "- " + listaRecorde.get(i).getNome() + "    " + listaRecorde.get(i).getTempo() );
 		}
 		
-		
+		System.out.println("\n \n \n \n \n \n \n \n \n 1 - VOLTA PARA O MENU");
+		int volta = sc.nextInt();
+		if(volta == 1) {menu();}
 	}
-	public static void cls() {
-		System.out.println("\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n");
-	}
-	
 	
 	@SuppressWarnings("unchecked")
 	public static void salvaRecorde(Jogador ganhador) throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -193,4 +195,9 @@ public class Jogo {
 		out.writeObject(listaRecorde);
 		out.close();
 	}
+	
+	public static void cls() {
+		System.out.println("\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n");
+	}
+	
 }
