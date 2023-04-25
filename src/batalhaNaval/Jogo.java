@@ -83,7 +83,7 @@ public class Jogo {
 		String j1 = sc.nextLine();
 		System.out.println("Jogador 2 informe seu nome: ");
 		String j2 = sc.nextLine();
-		
+		cls();
 		
 		Jogador jogador1 = new Jogador(j1);
 		Jogador jogador2 = new Jogador(j2);
@@ -115,7 +115,7 @@ public class Jogo {
 		String j1 = sc.nextLine();
 		System.out.println("Jogador 2 informe seu nome: ");
 		String j2 = sc.nextLine();
-		
+		cls();
 		Jogador jogador1 = new Jogador(j1);
 		Jogador jogador2 = new Jogador(j2);
 		Jogador ganhador;
