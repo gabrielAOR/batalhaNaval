@@ -78,8 +78,15 @@ public class Jogo {
 	}
 	
 	public static void jogoCustom() throws FileNotFoundException, IOException, ClassNotFoundException {
-		Jogador jogador1 = new Jogador("Player1");
-		Jogador jogador2 = new Jogador("Player2");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Jogador 1 informe seu nome: ");
+		String j1 = sc.nextLine();
+		System.out.println("Jogador 2 informe seu nome: ");
+		String j2 = sc.nextLine();
+		
+		
+		Jogador jogador1 = new Jogador(j1);
+		Jogador jogador2 = new Jogador(j2);
 		Jogador ganhador;
 		
 		jogador1.getBoard().preencheTabuleiro();
@@ -103,8 +110,14 @@ public class Jogo {
 	}
 		
 	public static void jogoNormal() throws FileNotFoundException, IOException, ClassNotFoundException {
-		Jogador jogador1 = new Jogador("Player1");
-		Jogador jogador2 = new Jogador("Player2");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Jogador 1 informe seu nome: ");
+		String j1 = sc.nextLine();
+		System.out.println("Jogador 2 informe seu nome: ");
+		String j2 = sc.nextLine();
+		
+		Jogador jogador1 = new Jogador(j1);
+		Jogador jogador2 = new Jogador(j2);
 		Jogador ganhador;
 		
 		jogador1.getBoard().preencheTabuleiro();
